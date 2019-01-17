@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="problem02.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="handlebars-v4.0.12.js"></script>
+    <script src="problem02.js"></script>
+  <body>
+    <h1>Programming Languages</h1>
+    <main>
+
+    </main>
+    <script id="mainSection" type="text/x-handlebars">
+      {{#each languages}}
+      <section>
+        {{> languageDesc}}
+      </section>
+      {{/each}}
+    </script>
+
+    <script id="languageDesc" type="text/x-handlebars">
+      <h2>{{name}}</h2>
+      <p class="more">{{description}}</p>
+      <button>Show More</button>
+    </script>
+  </body>
+</html>

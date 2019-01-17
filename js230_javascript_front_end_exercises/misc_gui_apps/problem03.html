@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="problem03.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="handlebars-v4.0.12.js"></script>
+    <script src="problem03.js"></script>
+  <body>
+    <h1>Todos</h1>
+    <main></main>
+    <script type="text/x-handlebars">
+      {{#each todo_items}}
+      <div data-id={{id}}>
+        <div class="modal">
+          <div class="alertBox">
+            <p>Are you sure you want to delete this todo?</p>
+            <a href="#" class="yes">Yes</a>
+            <a href="#" class="no">No</a>
+          </div>
+        </div>
+        <p>{{title}}</p>
+        <a href="#" class="close">Close</a>
+      </div>
+      {{/each}}
+    </script>
+
+  </body>
+</html>

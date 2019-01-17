@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="whitespace-reset.css" />
+    <link rel="stylesheet" href="problem05.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="handlebars-v4.0.12.js"></script>
+    <script src="problem05.js"></script>
+  </head>
+  <body>
+    <form>
+      <h1>Multiple Choice Quiz</h1>
+      <button id="submit" type="submit">Submit Quiz</button>
+      <button id="reset_form" type="reset">Reset</button>
+    </form>
+
+    <script type="text/x-handlebars" id="questionList">
+      {{#each question}}
+      {{> questionTemplate}}
+      {{/each}}
+    </script>
+
+    <script type="text/x-handlebars" id="questionTemplate">
+      <fieldset>
+        <p>Q{{id}}. {{{description}}}</p>
+        {{#each options as |option|}}
+        <div>
+          <input type="radio" id="{{option}}" name="{{../id}}" value="{{option}}">
+          <label for="{{option}}">{{option}}</label>
+        </div>
+        {{/each}}
+        <p id="{{id}}" class="error_message"></p>
+      </fieldset>
+    </script>
+  </body>
+
+</html>

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <title>Selection Filters</title>
+  </head>
+  <body>
+    <form id="selection-filters" method="post" action="#">
+      <select id="animal-classifications">
+        <option value="Classifications" selected>Classifications</option>
+        <option value="Vertebrate">Vertebrate</option>
+        <option value="Warm-blooded">Warm-blooded</option>
+        <option value="Cold-blooded">Cold-blooded</option>
+        <option value="Mammal">Mammal</option>
+        <option value="Bird">Bird</option>
+      </select>
+      <select id="animals">
+        <option value="Animals" selected>Animals</option>
+        <option value="Bear">Bear</option>
+        <option value="Turtle">Turtle</option>
+        <option value="Whale">Whale</option>
+        <option value="Salmon">Salmon</option>
+        <option value="Ostrich">Ostrich</option>
+      </select>
+      <button id="clear">Clear</button>
+    </form>
+    <script>
+/*
+when the selection changes, we want to change the options that are shown
+we need to create options with key/value pairs that link the right options
+when an option is selected, we can grab the values that are assigned and only
+  show options with that value
+*/
+
+      var classification_options = {
+        'Vertebrate': ['Bear', 'Turtle', 'Whale', 'Salmon', 'Ostrich'],
+        'Warm-blooded': ['Bear', 'Whale', 'Ostrich'],
+        'Cold-blooded': ['Turle', 'Salmon'],
+        'Mammal': ['Bear', 'Whale'],
+        'Bird': ['Ostrich'],
+      };
+
+      var animal_options = {
+        'Bear': ['Vertebrate', 'Warm-blooded', 'Mammal'],
+        'Turtle': ['Vertebrate', 'Cold-blooded'],
+        'Whale': ['Vertebrate', 'Warm-blooded', 'Mammal'],
+        'Salmon': ['Vertebrate', 'Cold-blooded'],
+        'Ostrich': ['Vertebrate', 'Warm-blooded', 'Bird']
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var classifications = document.querySelector('#animal-classifications');
+        var animals = document.querySelector('#animals');
+        var clear = document.querySelector('#clear');
+
+        function setDisplayNone(options) {
+          for (var i = 0; i < options.length; i++) {
+            if (options[i].setAttribute('style', 'display:none;'));
+          }
+        }
+
+        function showSpecificOptions(options, criteria) {
+          criteria.forEach(function(specificCrit) {
+            for (i = 0; i < options.length; i++) {
+              if (options[i].value === specificCrit) {
+                options[i].setAttribute('style', 'dislay:show;');
+              }
+            }
+          });
+        }
+
+        classifications.addEventListener('input', function(e) {
+          var selection = e.target.value;
+          var criteria = classification_options[selection];
+          var options = animals.children;
+
+          setDisplayNone(options);
+          showSpecificOptions(options, criteria);
+
+        });
+
+        animals.addEventListener('input', function(e) {
+          var selection = e.target.value;
+          var criteria = animal_options[selection];
+          var options = classifications.children;
+
+          setDisplayNone(options);
+          showSpecificOptions(options, criteria);
+        });
+
+        clear.addEventListener('click', function(e) {
+          e.preventDefault();
+
+          var allOptions = document.querySelectorAll('option');
+
+          for (var i = 0; i < allOptions.length; i++) {
+            allOptions[i].setAttribute('style', 'display:show;');
+          }
+
+          animals.selectedIndex = 0;
+          classifications.selectedIndex = 0;
+        });
+
+      });
+    </script>
+  </body>
+</html>

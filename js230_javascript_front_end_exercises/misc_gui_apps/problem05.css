@@ -1,0 +1,53 @@
+header {
+  background: #e29921;
+  color: #fff;
+  height: 100px;
+  padding: 20px 15px;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: 28px;
+  padding-bottom: 10px;
+}
+
+select, button {
+  margin-right: 10px;
+  border: 1px solid white;
+  background: #e29921;
+  color: #fff;
+  border-radius: 5px;
+  padding: 2px 0;
+  font-size: 14px;
+}
+
+
+main {
+  padding: 10px;
+}
+
+figure {
+  display: inline-block;
+  margin: 10px;
+}
+
+img {
+  width: 200px;
+}
+
+figcaption {
+  font-weight: 700;
+}
+
+p {
+  display: block;
+  margin: 4px 0;
+}
+
+a {
+  background: #e29921;
+  color: #fff;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+}

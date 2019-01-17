@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+  <body>
+    <div id="1">
+      <h1 id="2">Hello, <em id="3">World</em></h1>
+      <p id="4">
+        Welcome to wonderland. This is an
+        <span id="5">awesome</span> place.
+      </p>
+      <a href="#" id="6"><strong id="7">Enter</strong></a>
+      <div id="8"><p id="9"><a href="#" id="10">Go back</a></p></div>
+    </div>
+
+    <script>
+      var directChild = 0;
+      var indirectChild = 0;
+
+      function childNodes(id) {
+        directChild += 1;
+        var node = document.getElementById(id);
+
+        var i;
+        for (i = 0; i < node.childNodes.length; i++) {
+          childNodes(node.childNodes[i]);
+        }
+      }
+
+
+      console.log(childNodes(1));
+      console.log(childNodes(4));
+      console.log(childNodes(9));
+    </script>
+  </body>
+
+</html>
+
+
+
+
+<!-- 1 - 9 child, 14 indirect child  X  9, 12
+2 - 2 child, 1 indirect child
+3 - 1 child
+4 - 5 child, 1 indirect child x 3, 1
+5 - 1 child
+6 - 1 child, 1 indirect child
+7 - 1 child
+8 - 1 child, 2 indirect child
+9 - 1 child, 1 indirect child
+10 - 1 child
+
+Got a few wrong, there are actually no blank text nodes on either side of P -->

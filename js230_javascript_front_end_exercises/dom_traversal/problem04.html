@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Tree Slicing</title>
+  <meta charset="UTF-8" />
+</head>
+
+<body>
+  <article id="1">1
+    <header id="2">2
+      <span id="3">3
+      <a href="#" id="4">4</a>
+    </span>
+    </header>
+    <main id="5">5
+      <section id="6">6
+        <p id="7">7
+          <span id="8">8
+          <strong id="9">9
+            <a href="#" id="10">10</a>
+          </strong>
+        </span>
+        </p>
+      </section>
+      <section id="11">11
+        <p id="12">12
+          <span id="13">13
+          <strong id="14">14
+            <a href="#" id="15">15</a>
+          </strong>
+        </span>
+        </p>
+        <p id="16">16
+          <span id="17">17
+          <strong id="18">18
+            <a href="#" id="19">19</a>
+          </strong>
+        </span>
+          <span id="20">20
+          <strong id="21">21
+            <a href="#" id="22">22</a>
+          </strong>
+        </span>
+        </p>
+      </section>
+    </main>
+    <footer id="23">23
+      <p id="24">24</p>
+    </footer>
+  </article>
+  <script>
+/*
+input: two integers
+output: array or undefined
+
+rules:
+- return an array that includes the tagnames of all elements between the begin and end
+  id's, inclusive of both
+- return undefined if:
+  - the id of the start or the end is not in the DOM
+  - if there is no path between the start and end id's
+- only include eleemnts that have <body> as an ancestor
+- only consier element nodes
+
+algorithm:
+- guard close to make sure both id's exist
+- check to make sure <body> is an ancestor
+
+- add tagname of element with end index to the array
+- start at the end index, and find parent
+- if parent is <body>, return undefined
+- check to see if parent's id is the start id
+  - if not, add tagname to array and continue on
+  - if so, add tagname to array and return array
+*/
+    function invalidInputs(start, end) {
+      return !document.getElementById(start) || !document.getElementById(end) || (start > end);
+    }
+
+    function sliceTree(start, end) {
+      let treeArray = [];
+
+      if (invalidInputs(start, end)) {
+        return undefined;
+      }
+
+      let child = document.getElementById(end);
+      let parent = child.parentElement;
+
+      while (child !== document.getElementById(start)) {
+        treeArray.unshift(child.tagName);
+
+        if (child.tagName === 'BODY') {
+          return undefined;
+        }
+
+        child = parent;
+        parent = parent.parentElement;
+      }
+
+      treeArray.unshift(child.tagName);
+      return treeArray;
+    }
+
+
+
+    console.log(sliceTree(1, 4)); // ["ARTICLE", "HEADER", "SPAN", "A"]
+    console.log(sliceTree(1, 76)); // undefined
+    console.log(sliceTree(2, 5)); // undefined
+    console.log(sliceTree(5, 4)); // undefined
+    console.log(sliceTree(1, 23)); // ["ARTICLE", "FOOTER"]
+    console.log(sliceTree(1, 22)); // ["ARTICLE", "MAIN", "SECTION", "P", "SPAN", "STRONG", "A"]
+    console.log(sliceTree(11, 19)); // ["SECTION", "P", "SPAN", "STRONG", "A"]
+  </script>
+</body>
+
+</html>

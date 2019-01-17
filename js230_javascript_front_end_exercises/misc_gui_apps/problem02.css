@@ -1,0 +1,26 @@
+body {
+  background: #999900;
+  color: #ffffff;
+  text-align: center;
+}
+
+main {
+  background: #ffffff;
+  color: black;
+  margin: 0 auto;
+  width: 600px;
+  border-radius: 3px;
+  padding: 20px;
+}
+
+section {
+  text-align: left;
+}
+
+button {
+  background: #999900;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+}

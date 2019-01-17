@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <title>Bold Element + Custom</title>
+  </head>
+  <body>
+    <section>Hello World</section>
+    <p>Greetings!</p>
+    <script>
+      var sectionElement = document.querySelector('section');
+
+      function makeBold(domElement, callback) {
+        domElement.setAttribute('style', 'font-weight: bold;');
+        callback(domElement);
+      }
+
+      makeBold(sectionElement, function(elem) {
+        elem.classList.add('highlight');
+      });
+
+      console.log(sectionElement.classList.contains('highlight'));
+      console.log(sectionElement.style);
+
+    </script>
+  </body>
+</html>

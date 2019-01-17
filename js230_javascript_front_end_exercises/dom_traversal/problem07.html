@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Nodes to Array</title>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <header id="1"></header>
+    <main id="2"></main>
+    <footer id="3"></footer>
+    <script>
+      /*
+      input - none
+      output - array representing DOM tree
+
+      rules -
+        - return an array that represents the DOM tree
+        - each element should be the uppercase tag name
+        - each element should be followed by an array that includes it's children
+          - if no children, represent children with an empty array
+
+      algorithm -
+
+      - create a var for empty array
+      - use the walk algorithm
+      - for each node
+        - get a node list of it's children
+          - if empty, push an empty array next to it
+          - if not empty, add the tag for the first element in the live list
+
+      */
+
+      function walk(node, callback) {
+        callback(node);
+        var i;
+        for (i = 0; i < node.children.length; i++) {
+          walk(node.children[i], callback);
+        }
+      }
+
+      function nodesToArr() {
+        var domArray = [];
+        walk(document.body, function(node) {
+          var arr1 = [node.tagName];
+          if (!node.firstElementChild) {
+            var arr2 = [];
+            arr1.push(arr2);
+          }
+
+          domArray.push(arr1);
+        });
+
+        return domArray;
+      }
+
+
+      console.log(nodesToArr());
+    </script>
+  </body>
+</html>

@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Node Swap</title>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <div id="1">
+      <div id="4"></div>
+      <div id="5">
+        <div id="6"></div>
+      </div>
+    </div>
+    <div id="2"></div>
+    <div id="3">
+      <div id="7"></div>
+      <div id="8"></div>
+      <div id="9"></div>
+    </div>
+  </body>
+  <script>
+    /*
+      input: two integers
+      output: true or undefined
+
+      rules:
+        - swap the two elements with the id's passed into the function
+        - return undefined if:
+          - one or both id's don't exist
+          - one element is the child of the other
+        - return true
+
+      algorithm:
+        - check to make sure both are valid nodes
+        - check to make sure one is not the child of another
+        - swap nodes by:
+          - get the value of the node and it's descendants
+          - create a var to copy node 1
+          - insert the copy before node 2
+          - replace the original node 1 with node 2
+    */
+
+    function nodeSwap(id1, id2 ) {
+      var node1 = document.getElementById(id1);
+      var node2 = document.getElementById(id2);
+      var node1copy;
+
+      if (!node1 || !node2 || isDescendent(node1, node2) || isDescendent(node2, node1)) {
+        return undefined;
+      }
+
+      node1copy = node1.cloneNode(true);
+      node2.insertAdjacentElement("beforebegin", node1copy);
+      node1.parentNode.replaceChild(node2, node1);
+
+      return true;
+    }
+
+    function isDescendent(nodeA, nodeB) {
+      while (nodeA !== null) {
+        if (nodeA.parentNode === nodeB) {
+          return true;
+        }
+
+        nodeA = nodeA.parentNode;
+      }
+
+      return false;
+    }
+    // at least one of the id attributes doesn't exist
+    console.log(nodeSwap(1, 20)); // undefined
+    // at least one of the nodes is a "child" of the other
+    console.log(nodeSwap(1, 4)); // undefined
+    console.log(nodeSwap(9, 3)); // undefined
+    // console.log(nodeSwap(1, 2));
+    console.log(nodeSwap(3, 1));
+    console.log(nodeSwap(7, 9));
+
+  </script>
+</html>

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="whitespace-reset.css" />
+    <link rel="stylesheet" href="problem05.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="handlebars-v4.0.12.js"></script>
+    <script src="problem05.js"></script>
+  <body>
+    <header>
+      <h1>Buy Used Cars</h1>
+
+      <label for="make">Make</label>
+      <select autocomplete="off" id="make">
+        <option value="all" selected>All</option>
+        <option value="Honda">Honda</option>
+        <option value="Toyota">Toyota</option>
+        <option value="Suzuki">Suzuki</option>
+        <option value="Audi">Audi</option>
+      </select>
+
+      <label for="model">Model</label>
+      <select autocomplete="off" id="model">
+        <option value="all" selected>All</option>
+        <option value="Accord">Accord</option>
+        <option value="Camry">Camry</option>
+        <option value="Corrola">Corrola</option>
+        <option value="Swift">Swift</option>
+        <option value="A4">A4</option>
+      </select>
+
+      <label for="price">Price</label>
+      <select autocomplete="off" id="price">
+        <option value="all" selected>Any</option>
+        <option value="7000">7000</option>
+        <option value="11000">11000</option>
+        <option value="12500">12500</option>
+        <option value="15000">15000</option>
+        <option value="9000">9000</option>
+        <option value="25000">25000</option>
+        <option value="26000">26000</option>
+      </select>
+
+      <label for="price">Price</label>
+      <select autocomplete="off" id="price">
+        <option value="all" selected>Any</option>
+        <option value="7000">7000</option>
+        <option value="11000">11000</option>
+        <option value="12500">12500</option>
+        <option value="15000">15000</option>
+        <option value="9000">9000</option>
+        <option value="25000">25000</option>
+        <option value="26000">26000</option>
+      </select>
+
+      <button>Filter</button>
+    </header>
+
+    <main>
+
+    </main>
+    <script id='carsList' type="text/x-handlebars">
+      {{#each individualCar}}
+      {{> carTemplate}}
+      {{/each}}
+    </script>
+
+    <script id='carTemplate' type="text/x-handlebars">
+      <figure>
+        <img src={{image}} />
+        <figcaption>{{make}} {{model}}</figcaption>
+        <p>Year: {{year}}</p>
+        <p>Price: ${{price}}</p>
+        <a href="#">Buy</a>
+      </figure>
+    </script>
+  </body>
+</html>

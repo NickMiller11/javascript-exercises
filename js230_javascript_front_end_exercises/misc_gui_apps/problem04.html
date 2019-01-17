@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="problem04.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="handlebars-v4.0.12.js"></script>
+    <script src="problem04.js"></script>
+  <body>
+    <h1>Todos</h1>
+    <main></main>
+    <div class="menu">
+      <ul>
+        <a id="editTodo" href="#"><li>Edit Todo</li></a>
+        <a id="showDetails" href="#"><li>Show Details</li></a>
+        <a id="delete" href="#"><li>Delete</li></a>
+      </ul>
+    </div>
+    <script type="text/x-handlebars">
+      {{#each todo_items}}
+      <div class="todo" data-id={{id}}>
+        <p>{{title}}</p>
+      </div>
+      {{/each}}
+    </script>
+
+  </body>
+</html>
